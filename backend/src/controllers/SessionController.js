@@ -1,5 +1,15 @@
+const User = require('../models/Users');
+
 module.exports = {
-    store(req, res) {
-        return res.json({ message: "teste" });
+    async store(req, res) {
+        const { email } = req.body;
+
+        let user = await User.findOne({ email });
+
+        if (!user) {
+            const user = await User.create({ email });
+        }
+ 
+        return res.json(user);
     }
 };
