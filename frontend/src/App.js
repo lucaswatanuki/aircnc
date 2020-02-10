@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import './App.css';
+import api from './services/api';
 
 import logo from './assets/logo.png';
 
 function App() {
   const [email, setEmail] = useState('');
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
-    console.log(email);
+    const response = await api.post('/session', {email});
+
+    console.log(response);
   }
 
 
